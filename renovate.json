@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "postUpdateOptions": [
+    "gomodTidy",
+    "gomodUpdateImportPaths"
+  ],
+  "prConcurrentLimit": 5,
+  "rebaseWhen": "conflicted"
+}

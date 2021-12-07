@@ -1,0 +1,42 @@
+name: Go
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    name: Module Tidy
+    runs-on: ubuntu-20.04
+    env:
+      GOFLAGS: '-tags=focal'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.17.4'
+      - name: Regenerate go.sum in a
+        working-directory: a
+        run: |
+          rm go.sum
+          go mod download
+          go mod tidy
+      - name: Regenerate go.sum in b
+        working-directory: b
+        run: |
+          rm go.sum
+          go mod download
+          go mod tidy
+      - name: Ensure go modules are tidy
+        run: |
+          changed_files=$(git status --porcelain | wc -l)
+          if [[ ${changed_files} -eq 0 ]]; then
+            echo "PASS: No changes detected"
+          else
+            echo "FAIL: Changes detected:"
+            git status
+            git diff
+            exit 1
+          fi
