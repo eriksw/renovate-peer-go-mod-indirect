@@ -1,6 +1,6 @@
 module github.com/eriksw/renovate-peer-go-mod-indirect/a
 
-go 1.17
+go 1.19
 
 require go.uber.org/zap v1.16.0
 
