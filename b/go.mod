@@ -2,7 +2,7 @@ module github.com/eriksw/renovate-peer-go-mod-indirect/b
 
 go 1.17
 
-require github.com/eriksw/renovate-peer-go-mod-indirect/a v0.0.0-00010101000000-000000000000
+require github.com/eriksw/renovate-peer-go-mod-indirect/a v0.0.0-20211207205359-3d7e94578947
 
 require (
 	go.uber.org/atomic v1.6.0 // indirect
